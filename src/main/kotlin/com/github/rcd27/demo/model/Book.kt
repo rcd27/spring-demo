@@ -10,7 +10,9 @@ data class Book(
 
         val title: String,
         val isbn: String,
-        val publisher: String,
+
+        @OneToOne
+        val publisher: Publisher,
 
         @ManyToMany
         @JoinTable(
