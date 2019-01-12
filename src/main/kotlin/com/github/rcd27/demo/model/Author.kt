@@ -11,6 +11,6 @@ data class Author(
         val firstName: String,
         val lastNAme: String,
 
-        @ManyToMany
+        @ManyToMany(mappedBy = "authors")
         val books: Set<Book>
 )

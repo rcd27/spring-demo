@@ -13,5 +13,9 @@ data class Book(
         val publisher: String,
 
         @ManyToMany
+        @JoinTable(
+                name = "author_book",
+                joinColumns = [JoinColumn(name = "book_id")],
+                inverseJoinColumns = [JoinColumn(name = "author_id")])
         val authors: Set<Author>
 )
