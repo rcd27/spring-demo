@@ -6,11 +6,16 @@ import javax.persistence.*
 data class Author(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long,
+        val id: Long? = null) {
 
-        val firstName: String,
-        val lastNAme: String,
+    lateinit var firstName: String
+    lateinit var lastName: String
 
-        @ManyToMany(mappedBy = "authors")
-        val books: Set<Book>
-)
+    constructor(firstName: String, lastName: String) : this() {
+        this.firstName = firstName
+        this.lastName = lastName
+    }
+
+    @ManyToMany(mappedBy = "authors")
+    val books: MutableSet<Book> = mutableSetOf()
+}

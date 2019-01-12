@@ -6,7 +6,7 @@ import javax.persistence.*
 data class Book(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long,
+        val id: Long? = null,
 
         val title: String,
         val isbn: String,
@@ -17,5 +17,5 @@ data class Book(
                 name = "author_book",
                 joinColumns = [JoinColumn(name = "book_id")],
                 inverseJoinColumns = [JoinColumn(name = "author_id")])
-        val authors: Set<Author>
+        val authors: MutableSet<Author> = mutableSetOf()
 )
